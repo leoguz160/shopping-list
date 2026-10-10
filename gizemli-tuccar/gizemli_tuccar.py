@@ -88,8 +88,50 @@ Goku = kart('Goku', 'Goku', 'goku', 10, 8, 'Kamehameha', (90, 208, 255), 'isin',
             "rakibiyle karşılaştığında büyük bir güce sahip olur ve onun görevi 7 tane Dragon Ball'u bulmak "
             "ve bunu kullanarak büyük bir ejderhayı çağırmaktır. Fakat karşısına büyük rakipler çıkacaktır.")
 
-kartlarim = [Yuji_Itadori, Naruto, Johnny_Joestar, Shinji_Ikari_EVA01, Gon]
-bilgisayar_kartlari = [Dio_Brando, Killua_Zoldyck, Goku, Spike_Spiegel, Monkey_D_Luffy]
+Vegeta = kart('Vegeta', 'Vegeta', 'vegeta', 10, 7, 'Final Flash', (255, 220, 90), 'isin',
+              "Vegeta, yok olmuş Saiyan gezegeninin gururlu prensidir. Goku'yla sonsuz bir rekabeti vardır ve "
+              "ondan daha güçlü olmak için durmadan antrenman yapar. Havaya dikilmiş saçları ve Saiyan savaş "
+              "zırhıyla tanınır.")
+Tanjiro_Kamado = kart('Tanjiro Kamado', 'Tanjiro', 'tanjiro', 6, 5, 'Hinokami Kagura', (255, 120, 40), 'yakin',
+                      "Tanjiro Kamado, ailesi bir iblis tarafından öldürüldükten sonra iblise dönüşen kız kardeşi "
+                      "Nezuko'yu tekrar insan yapmak için İblis Avcısı olan iyi kalpli bir gençtir. Çok güçlü bir "
+                      "koku alma duyusu vardır ve Ateş Tanrısı Dansı'nı kullanır.")
+Izuku_Midoriya = kart('Izuku Midoriya', 'Deku', 'deku', 7, 6, 'Detroit Smash', (90, 255, 210), 'yakin',
+                      "Izuku Midoriya, güçsüz doğmuş ama kahraman olma hayalinden vazgeçmeyen bir gençtir. Tüm "
+                      "zamanların en büyük kahramanı All Might'ın gücü One For All'u miras alır ve U.A. Lisesi'nde "
+                      "kahraman olmak için eğitim görür.")
+Mikasa_Ackerman = kart('Mikasa Ackerman', 'Mikasa', 'mikasa', 6, 6, '3D Manevra Kesişi', (140, 160, 205), 'yakin',
+                       "Mikasa Ackerman, çocukluk arkadaşı Eren Yeager'ı korumak için her şeyi yapan usta bir "
+                       "askerdir. Olağanüstü Ackerman gücü ve üç boyutlu manevra ekipmanıyla devleri tek başına "
+                       "doğrar. Kırmızı atkısını asla çıkarmaz.")
+Sailor_Moon = kart('Sailor Moon', 'Moon', 'sailormoon', 5, 4, 'Moon Tiara Action', (255, 150, 200), 'kure',
+                   "Usagi Tsukino, sevimli ve biraz uykucu bir lise öğrencisidir. Sailor Moon'a dönüşerek "
+                   "'Ay adına seni cezalandıracağım!' der ve Gümüş Kristal'in gücüyle kötülüğe karşı savaşır.")
+Sasuke_Uchiha = kart('Sasuke Uchiha', 'Sasuke', 'sasuke', 8, 7, 'Chidori', (60, 110, 255), 'yakin',
+                     "Sasuke Uchiha, Uchiha klanından hayatta kalan son ninjalardandır. Abisinden intikam almak "
+                     "için güç peşinde koşar. Sharingan gözleri ve Chidori tekniğiyle bilinir; Naruto'nun en büyük "
+                     "rakibi ve arkadaşıdır.")
+Roronoa_Zoro = kart('Roronoa Zoro', 'Zoro', 'zoro', 7, 6, 'Üç Kılıç: Oni Giri', (200, 255, 120), 'yakin',
+                    "Roronoa Zoro, dünyanın en büyük kılıç ustası olmak isteyen Hasır Şapka Korsanları'nın "
+                    "kılıç ustasıdır. Üç kılıçla savaşır, sürekli yolunu kaybeder ama Luffy'ye olan sadakatinden "
+                    "asla ödün vermez.")
+Gojo_Satoru = kart('Gojo Satoru', 'Gojo', 'gojo', 9, 8, 'Hollow Purple', (190, 110, 255), 'kure',
+                   "Gojo Satoru, Jujutsu Teknik Lisesi'nin öğretmeni ve en güçlü büyücüsüdür. Altı Göz ve "
+                   "Sonsuzluk tekniği sayesinde hiçbir saldırı ona dokunamaz. Gözlerini siyah bir bağla örter ve "
+                   "Yuji'nin hocasıdır.")
+Saitama = kart('Saitama', 'Saitama', 'saitama', 10, 8, 'Ciddi Yumruk', (255, 200, 60), 'yakin',
+               "Saitama, her düşmanı tek yumrukta yenen, bu yüzden hayatı sıkıcı geçen bir kahramandır. Kel "
+               "kafası, sarı kostümü, kırmızı eldivenleri ve beyaz pelerini ile tanınır. En büyük derdi "
+               "indirimdeki market ürünlerini kaçırmamaktır.")
+Ichigo_Kurosaki = kart('Ichigo Kurosaki', 'Ichigo', 'ichigo', 8, 7, 'Getsuga Tenshou', (92, 72, 230), 'kure',
+                       "Ichigo Kurosaki, ölen ruhları görebilen turuncu saçlı bir lise öğrencisidir. Shinigami "
+                       "güçlerini devralır ve dev kılıcı Zangetsu ile Hollow'lara karşı savaşır. Sevdiklerini "
+                       "korumak için Getsuga Tenshou'yu kullanır.")
+
+kartlarim = [Yuji_Itadori, Naruto, Johnny_Joestar, Shinji_Ikari_EVA01, Gon,
+             Vegeta, Tanjiro_Kamado, Izuku_Midoriya, Mikasa_Ackerman, Sailor_Moon]
+bilgisayar_kartlari = [Dio_Brando, Killua_Zoldyck, Goku, Spike_Spiegel, Monkey_D_Luffy,
+                       Sasuke_Uchiha, Roronoa_Zoro, Gojo_Satoru, Saitama, Ichigo_Kurosaki]
 
 
 # ----------------------------------------------------------------------------
@@ -107,7 +149,7 @@ def kart_bul(girdi, kartlar):
     g = norm(girdi)
     if len(g) < 3:
         return []
-    return [i for i, k in enumerate(kartlar) if g in norm(k['Isim'])]
+    return [i for i, k in enumerate(kartlar) if g in norm(k['Isim']) or g in norm(k['Kisa'])]
 
 
 def hex_rgb(h):
@@ -598,7 +640,7 @@ def bayilma_animasyonu(ekran, o, r, kaybeden):
 def zafer_animasyonu(ekran, o, r, kazanan, kaybeden):
     if not ekran.renkli:
         return
-    for dy in (0, -2, -4, -5, -4, -2, 0, -2, -4, -5, -4, -2, 0):
+    for dy in (0, -1, -2, -2, -1, 0, -1, -2, -2, -1, 0):
         kare_ciz(ekran, o, r, {kaybeden.taraf: {'gizli': True}, kazanan.taraf: {'dy': dy}}, sure=0.05)
 
 
@@ -715,7 +757,7 @@ def baslik_ekrani(ekran):
         return
     s = Sahne()
     secilen = random.sample(kartlarim + bilgisayar_kartlari, 3)
-    for kart_, x0 in zip(secilen, (-3, 23, 49)):
+    for kart_, x0 in zip(secilen, (-1, 23, 47)):
         s.sprite(kart_['Sprite'], x0, 12)               # boydan değil, "poster" gibi bel hizasından kesilir
     s.panel(1, 12, 54, 5, KUTU)
     s.yazi(1, 12, '┌' + '─' * 52 + '┐', ALTIN)
@@ -725,7 +767,7 @@ def baslik_ekrani(ekran):
         s.yazi(r_, 65, '│', ALTIN)
     s.yazi(2, 14, 'G İ Z E M L İ   T Ü C C A R I N   O Y U N U'.center(50), ALTIN)
     s.yazi(3, 14, 'Pokémon tarzı anime kart savaşı'.center(50), BEYAZ)
-    s.yazi(4, 14, '★  5 kart  ·  1 rakip  ·  tek kazanan  ★'.center(50), (160, 200, 255))
+    s.yazi(4, 14, f'★  {len(kartlarim)} kart  ·  1 rakip  ·  tek kazanan  ★'.center(50), (160, 200, 255))
     ekran.mesaj_sabit("Başlamak için Enter'a bas...", '')
     ekran.ciz(s)
     ekran.sor()
@@ -744,8 +786,8 @@ def kart_sahnesi(k, sira, kartlar, oyuncunun_mu):
     baslik = ' SENİN KARTLARIN ' if oyuncunun_mu else ' RAKİBİN KARTLARI '
     s.yazi(0, 0, baslik, KOYU, ALTIN if oyuncunun_mu else (255, 140, 140))
     c = len(baslik) + 2
-    for i, kk in enumerate(kartlar):
-        etiket = f' {i + 1}.{kk["Kisa"]} '
+    for i in range(len(kartlar)):
+        etiket = f' {i + 1} '
         secili = i == sira
         s.yazi(0, c, etiket, KOYU if secili else BEYAZ, (255, 255, 255) if secili else KUTU)
         c += len(etiket) + 1
@@ -779,7 +821,7 @@ def kart_secimi(ekran):
             print(f'\n--- {k["Isim"]}  (Can {k["Saglik"]}, Güç {k["Guc"]}, Özel: {k["Hamle"]}) ---')
             print('\n'.join(ascii_sprite(k['Sprite'])))
             print(textwrap.fill(k['Hikaye'], 70))
-        ekran.mesaj_sabit(bildirim or 'Enter: sonraki   p: önceki   1-5: numara   r: rakip kartları   q: çık',
+        ekran.mesaj_sabit(bildirim or f'Enter: sonraki   p: önceki   1-{len(kartlar)}: numara   r: rakip kartları   q: çık',
                           's: BU KARTI SEÇ  (kart ismini yazarak da seçebilirsin)' if liste == 'oyuncu'
                           else 'Bunlar rakibin kartları! (r: kendi kartlarına dön)')
         bildirim = ''
@@ -806,7 +848,7 @@ def kart_secimi(ekran):
                 liste, sira = 'rakip', rakibin[0]
                 bildirim = f'{bilgisayar_kartlari[sira]["Isim"]} rakibin kartı! Kendi kartlarından seç.'
             else:
-                bildirim = 'Anlamadım. Numara (1-5), kart ismi, s (seç) veya Enter yaz.'
+                bildirim = f'Anlamadım. Numara (1-{len(kartlar)}), kart ismi, s (seç) veya Enter yaz.'
 
 
 def rakip_cek(ekran):

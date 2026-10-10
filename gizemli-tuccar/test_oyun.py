@@ -4,6 +4,8 @@ import contextlib
 import io
 import os
 import random
+import re
+import textwrap
 import unittest
 
 os.environ['GT_HIZ'] = '0'          # testlerde bekleme olmasın
@@ -70,6 +72,74 @@ class KartTesti(unittest.TestCase):
         self.assertEqual(oyun.norm('Saldır'), 'saldir')
         self.assertEqual(oyun.norm('ÖZEL'), 'ozel')
         self.assertEqual(oyun.norm('İşçi'), 'isci')
+
+
+class KadroTesti(unittest.TestCase):
+    """Kadro büyüdükçe arayüzün sınırları aşılmasın."""
+
+    def test_kadro_boyutu_ve_benzersizlik(self):
+        self.assertEqual(len(oyun.kartlarim), 10)
+        self.assertEqual(len(oyun.bilgisayar_kartlari), 10)
+        isimler = [k['Isim'] for k in tum_kartlar()]
+        spritelar = [k['Sprite'] for k in tum_kartlar()]
+        self.assertEqual(len(set(isimler)), len(isimler), 'aynı isimde iki kart var')
+        self.assertEqual(len(set(spritelar)), len(spritelar), 'iki kart aynı sprite ı kullanıyor')
+        self.assertEqual(set(spritelar), set(SPRITES), 'kartı olmayan sprite ya da spritesız kart var')
+
+    def test_kart_degerleri_makul(self):
+        for k in tum_kartlar():
+            self.assertTrue(1 <= k['Saglik'] <= 10, k['Isim'])      # Can çubuğu 10 hücre
+            self.assertTrue(1 <= k['Guc'] <= 10, k['Isim'])
+            self.assertIn(k['Tip'], ('kure', 'isin', 'yakin'), k['Isim'])
+            self.assertEqual(len(k['Renk']), 3)
+
+    def test_yazilar_arayuze_sigiyor(self):
+        for k in tum_kartlar():
+            self.assertLessEqual(len(k['Kisa']), 8, f"{k['Isim']}: HUD'daki kısa isim 8 karakteri aşıyor")
+            self.assertLessEqual(len(k['Hamle']), 30, f"{k['Isim']}: hamle adı panele sığmaz")
+            self.assertLessEqual(len(k['Isim']), 36, k['Isim'])
+            satirlar = textwrap.wrap(k['Hikaye'], 39)
+            self.assertLessEqual(len(satirlar), 12, f"{k['Isim']}: hikaye karakter panelinden taşar ({len(satirlar)} satır)")
+
+    def test_isimle_arama_her_kartı_tek_basina_bulur(self):
+        for kartlar in (oyun.kartlarim, oyun.bilgisayar_kartlari):
+            for i, k in enumerate(kartlar):
+                ilk_kelime = k['Isim'].split()[0]
+                if len(ilk_kelime) >= 3:
+                    self.assertEqual(oyun.kart_bul(ilk_kelime, kartlar), [i], ilk_kelime)
+        # Bir listedeki isim, öbür listedeki kartı yanlışlıkla bulmasın
+        for k in oyun.kartlarim:
+            self.assertEqual(oyun.kart_bul(k['Isim'], oyun.bilgisayar_kartlari), [], k['Isim'])
+
+    def test_kisa_isimle_de_kart_bulunur(self):
+        # HUD'da görünen kısa isim ("Deku", "Moon") de çalışmalı; aranan isim tek bir karta ait olmalı.
+        for kartlar in (oyun.kartlarim, oyun.bilgisayar_kartlari):
+            for i, k in enumerate(kartlar):
+                if len(k['Kisa']) >= 3:
+                    self.assertEqual(oyun.kart_bul(k['Kisa'], kartlar), [i], k['Kisa'])
+                    self.assertEqual(oyun.kart_bul(k['Kisa'], oyun.bilgisayar_kartlari if kartlar is oyun.kartlarim
+                                                   else oyun.kartlarim), [], k['Kisa'])
+
+    def test_spritelarin_sag_ve_sol_kenar_sutunu_bos(self):
+        # Başlık ekranındaki "poster" sırası sprite'ları kenarlara kadar kaydırır; 1 piksellik
+        # boş kenar sayesinde kılıç/pelerin gibi parçalar ekran dışında kesilmez.
+        for ad, sp in SPRITES.items():
+            for satir in sp['satirlar']:
+                self.assertEqual(satir[0], '.', f'{ad}: sol kenar sütunu dolu')
+                self.assertEqual(satir[-1], '.', f'{ad}: sağ kenar sütunu dolu')
+
+    def test_her_kart_icin_sahneler_cizilir_ve_satirlar_tasmaz(self):
+        gorunmez = re.compile(r'\x1b\[[0-9;?]*[A-Za-z]')
+        kartlar = tum_kartlar()
+        for i, k in enumerate(kartlar):
+            liste = oyun.kartlarim if k in oyun.kartlarim else oyun.bilgisayar_kartlari
+            sahneler = [oyun.kart_sahnesi(k, liste.index(k), liste, liste is oyun.kartlarim),
+                        oyun.savas_sahnesi(oyun.Savasci(k, 'oyuncu'), oyun.Savasci(kartlar[(i + 7) % len(kartlar)], 'rakip'))]
+            for sahne in sahneler:
+                satirlar = oyun.sahne_satirlari(sahne)
+                self.assertEqual(len(satirlar), oyun.SAHNE_SATIR)
+                for satir in satirlar:
+                    self.assertEqual(len(gorunmez.sub('', satir)), oyun.GEN, k['Isim'])
 
 
 class SavasTesti(unittest.TestCase):
