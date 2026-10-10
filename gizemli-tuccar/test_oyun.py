@@ -111,6 +111,23 @@ class KadroTesti(unittest.TestCase):
         for k in oyun.kartlarim:
             self.assertEqual(oyun.kart_bul(k['Isim'], oyun.bilgisayar_kartlari), [], k['Isim'])
 
+    def test_kisa_isimle_de_kart_bulunur(self):
+        # HUD'da görünen kısa isim ("Deku", "Moon") de çalışmalı; aranan isim tek bir karta ait olmalı.
+        for kartlar in (oyun.kartlarim, oyun.bilgisayar_kartlari):
+            for i, k in enumerate(kartlar):
+                if len(k['Kisa']) >= 3:
+                    self.assertEqual(oyun.kart_bul(k['Kisa'], kartlar), [i], k['Kisa'])
+                    self.assertEqual(oyun.kart_bul(k['Kisa'], oyun.bilgisayar_kartlari if kartlar is oyun.kartlarim
+                                                   else oyun.kartlarim), [], k['Kisa'])
+
+    def test_spritelarin_sag_ve_sol_kenar_sutunu_bos(self):
+        # Başlık ekranındaki "poster" sırası sprite'ları kenarlara kadar kaydırır; 1 piksellik
+        # boş kenar sayesinde kılıç/pelerin gibi parçalar ekran dışında kesilmez.
+        for ad, sp in SPRITES.items():
+            for satir in sp['satirlar']:
+                self.assertEqual(satir[0], '.', f'{ad}: sol kenar sütunu dolu')
+                self.assertEqual(satir[-1], '.', f'{ad}: sağ kenar sütunu dolu')
+
     def test_her_kart_icin_sahneler_cizilir_ve_satirlar_tasmaz(self):
         gorunmez = re.compile(r'\x1b\[[0-9;?]*[A-Za-z]')
         kartlar = tum_kartlar()

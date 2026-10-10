@@ -96,22 +96,22 @@ Tanjiro_Kamado = kart('Tanjiro Kamado', 'Tanjiro', 'tanjiro', 6, 5, 'Hinokami Ka
                       "Tanjiro Kamado, ailesi bir iblis tarafından öldürüldükten sonra iblise dönüşen kız kardeşi "
                       "Nezuko'yu tekrar insan yapmak için İblis Avcısı olan iyi kalpli bir gençtir. Çok güçlü bir "
                       "koku alma duyusu vardır ve Ateş Tanrısı Dansı'nı kullanır.")
-Izuku_Midoriya = kart('Izuku Midoriya', 'Deku', 'deku', 7, 6, 'Detroit Smash', (120, 255, 140), 'yakin',
+Izuku_Midoriya = kart('Izuku Midoriya', 'Deku', 'deku', 7, 6, 'Detroit Smash', (90, 255, 210), 'yakin',
                       "Izuku Midoriya, güçsüz doğmuş ama kahraman olma hayalinden vazgeçmeyen bir gençtir. Tüm "
                       "zamanların en büyük kahramanı All Might'ın gücü One For All'u miras alır ve U.A. Lisesi'nde "
                       "kahraman olmak için eğitim görür.")
-Mikasa_Ackerman = kart('Mikasa Ackerman', 'Mikasa', 'mikasa', 6, 6, '3D Manevra Kesişi', (210, 214, 230), 'yakin',
+Mikasa_Ackerman = kart('Mikasa Ackerman', 'Mikasa', 'mikasa', 6, 6, '3D Manevra Kesişi', (140, 160, 205), 'yakin',
                        "Mikasa Ackerman, çocukluk arkadaşı Eren Yeager'ı korumak için her şeyi yapan usta bir "
                        "askerdir. Olağanüstü Ackerman gücü ve üç boyutlu manevra ekipmanıyla devleri tek başına "
                        "doğrar. Kırmızı atkısını asla çıkarmaz.")
 Sailor_Moon = kart('Sailor Moon', 'Moon', 'sailormoon', 5, 4, 'Moon Tiara Action', (255, 150, 200), 'kure',
                    "Usagi Tsukino, sevimli ve biraz uykucu bir lise öğrencisidir. Sailor Moon'a dönüşerek "
                    "'Ay adına seni cezalandıracağım!' der ve Gümüş Kristal'in gücüyle kötülüğe karşı savaşır.")
-Sasuke_Uchiha = kart('Sasuke Uchiha', 'Sasuke', 'sasuke', 8, 7, 'Chidori', (120, 200, 255), 'yakin',
+Sasuke_Uchiha = kart('Sasuke Uchiha', 'Sasuke', 'sasuke', 8, 7, 'Chidori', (60, 110, 255), 'yakin',
                      "Sasuke Uchiha, Uchiha klanından hayatta kalan son ninjalardandır. Abisinden intikam almak "
                      "için güç peşinde koşar. Sharingan gözleri ve Chidori tekniğiyle bilinir; Naruto'nun en büyük "
                      "rakibi ve arkadaşıdır.")
-Roronoa_Zoro = kart('Roronoa Zoro', 'Zoro', 'zoro', 7, 6, 'Üç Kılıç: Oni Giri', (120, 230, 120), 'yakin',
+Roronoa_Zoro = kart('Roronoa Zoro', 'Zoro', 'zoro', 7, 6, 'Üç Kılıç: Oni Giri', (200, 255, 120), 'yakin',
                     "Roronoa Zoro, dünyanın en büyük kılıç ustası olmak isteyen Hasır Şapka Korsanları'nın "
                     "kılıç ustasıdır. Üç kılıçla savaşır, sürekli yolunu kaybeder ama Luffy'ye olan sadakatinden "
                     "asla ödün vermez.")
@@ -123,7 +123,7 @@ Saitama = kart('Saitama', 'Saitama', 'saitama', 10, 8, 'Ciddi Yumruk', (255, 200
                "Saitama, her düşmanı tek yumrukta yenen, bu yüzden hayatı sıkıcı geçen bir kahramandır. Kel "
                "kafası, sarı kostümü, kırmızı eldivenleri ve beyaz pelerini ile tanınır. En büyük derdi "
                "indirimdeki market ürünlerini kaçırmamaktır.")
-Ichigo_Kurosaki = kart('Ichigo Kurosaki', 'Ichigo', 'ichigo', 8, 7, 'Getsuga Tenshou', (150, 170, 255), 'kure',
+Ichigo_Kurosaki = kart('Ichigo Kurosaki', 'Ichigo', 'ichigo', 8, 7, 'Getsuga Tenshou', (92, 72, 230), 'kure',
                        "Ichigo Kurosaki, ölen ruhları görebilen turuncu saçlı bir lise öğrencisidir. Shinigami "
                        "güçlerini devralır ve dev kılıcı Zangetsu ile Hollow'lara karşı savaşır. Sevdiklerini "
                        "korumak için Getsuga Tenshou'yu kullanır.")
@@ -149,7 +149,7 @@ def kart_bul(girdi, kartlar):
     g = norm(girdi)
     if len(g) < 3:
         return []
-    return [i for i, k in enumerate(kartlar) if g in norm(k['Isim'])]
+    return [i for i, k in enumerate(kartlar) if g in norm(k['Isim']) or g in norm(k['Kisa'])]
 
 
 def hex_rgb(h):
@@ -640,7 +640,7 @@ def bayilma_animasyonu(ekran, o, r, kaybeden):
 def zafer_animasyonu(ekran, o, r, kazanan, kaybeden):
     if not ekran.renkli:
         return
-    for dy in (0, -2, -4, -5, -4, -2, 0, -2, -4, -5, -4, -2, 0):
+    for dy in (0, -1, -2, -2, -1, 0, -1, -2, -2, -1, 0):
         kare_ciz(ekran, o, r, {kaybeden.taraf: {'gizli': True}, kazanan.taraf: {'dy': dy}}, sure=0.05)
 
 
@@ -757,7 +757,7 @@ def baslik_ekrani(ekran):
         return
     s = Sahne()
     secilen = random.sample(kartlarim + bilgisayar_kartlari, 3)
-    for kart_, x0 in zip(secilen, (-3, 23, 49)):
+    for kart_, x0 in zip(secilen, (-1, 23, 47)):
         s.sprite(kart_['Sprite'], x0, 12)               # boydan değil, "poster" gibi bel hizasından kesilir
     s.panel(1, 12, 54, 5, KUTU)
     s.yazi(1, 12, '┌' + '─' * 52 + '┐', ALTIN)
